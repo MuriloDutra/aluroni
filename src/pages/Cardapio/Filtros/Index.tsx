@@ -1,10 +1,19 @@
 import filtros from "./Filtros.json";
 import styles from "./Filtros.module.scss";
+import classNames from "classnames";
 
 type Item = typeof filtros[0];
 
-export default function Filtros() {
-  function selecionarFiltro(item: Item) {}
+interface Props {
+  filtro: number | null;
+  setFiltro: React.Dispatch<React.SetStateAction<number | null>>;
+}
+
+export default function Filtros({ filtro, setFiltro }: Props) {
+  function selecionarFiltro(item: Item) {
+    if (filtro === item.id) return setFiltro(null);
+    return setFiltro(item.id);
+  }
 
   return (
     <div className={styles.filtros}>
@@ -12,7 +21,10 @@ export default function Filtros() {
         <button
           key={item.id}
           onClick={() => selecionarFiltro(item)}
-          className={styles.filtros__filtro}
+          className={classNames({
+            [styles.filtros__filtro]: true,
+            [styles["filtros__filtro--ativo"]]: filtro === item.id,
+          })}
         >
           {item.label}
         </button>
