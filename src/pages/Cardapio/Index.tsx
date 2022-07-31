@@ -4,6 +4,7 @@ import Buscador from "./Buscador/Index";
 import { useState } from "react";
 import Filtros from "./Filtros/Index";
 import Ordenador from "./Ordenador/Index";
+import Itens from "./Itens/Index";
 
 export default function Cardapio() {
   const [busca, setBusca] = useState("");
@@ -24,6 +25,7 @@ export default function Cardapio() {
           <Filtros filtro={filtro} setFiltro={setFiltro} />
           <Ordenador ordenador={ordenador} setOrdenador={setOrdenador} />
         </div>
+        <Itens />
       </section>
     </main>
   );
